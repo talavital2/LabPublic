@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-08-01/managementGroupDeploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "variables": {},
+    "resources": [
+      {
+        "type": "Microsoft.Management/managementGroups",
+        "name": "MyManagementGroup",
+        "apiVersion": "2019-08-01",
+        "properties": {
+          "displayName": "My Management Group"
+        }
+      },
+      {
+        "type": "Microsoft.Management/managementGroups/providers/subscriptions",
+        "name": "[concat('MyManagementGroup/', parameters('subscriptionName'))]",
+        "apiVersion": "2020-05-01",
+        "properties": {
+          "subscriptionId": "[parameters('subscriptionId')]",
+          "displayName": "[parameters('subscriptionName')]"
+        }
+      }
+    ],
+    "outputs": {}
+  }
+  
